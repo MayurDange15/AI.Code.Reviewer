@@ -21,8 +21,9 @@ const getResponse = async (req, res) => {
 
     res.end();
   } catch (err) {
-    console.error(err);
-    res.status(500).end("Error generating response");
+    console.error("Controller Error:", err.message);
+    // Send a 500 status and pass the specific error message to the frontend
+    res.status(500).json({ error: err.message || "Error generating response" });
   }
 };
 
