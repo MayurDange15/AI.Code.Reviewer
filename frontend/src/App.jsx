@@ -26,13 +26,16 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/ai/get-response", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/ai/get-response`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ code }),
         },
-        body: JSON.stringify({ code }),
-      });
+      );
 
       // 🔥 Check for HTTP errors before trying to read the stream
       if (!response.ok) {
